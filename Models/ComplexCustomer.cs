@@ -3,11 +3,19 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace SchemaVersionDemo.Models;
 
-//[BsonDiscriminator("ComplexCustomer")]
+[BsonDiscriminator("ComplexCustomer")]
 public class ComplexCustomer : Customer
-{
 
- [BsonElement]
-public List<Phone> Phone { get; set; } = null!;
+{
+    private List<Phone> Phones;
+
+     public void SetPhones(List<Phone> phones){
+        this.Phones = phones;
+    }
+
+    public override List<Phone> GetPhones(){
+        return this.Phones;
+    }
+
 
 }

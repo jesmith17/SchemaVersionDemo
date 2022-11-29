@@ -6,7 +6,7 @@ namespace SchemaVersionDemo.Models;
 [BsonDiscriminator(RootClass = true)]
 [BsonKnownTypes(typeof(SimpleCustomer),typeof(ComplexCustomer))]
 
-public class Customer
+public abstract class Customer
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -16,6 +16,14 @@ public class Customer
     public string LastName { get; set; } = null!;
     public string Suffix { get; set; } = null!;
     public string Prefix { get; set; } = null!;
+    
+    [BsonElement]
+    public List<Phone> Phones;
+
+    
+    public abstract List<Phone> GetPhones();
+
+
 
     public List<Address> Addresses {get; set; } = new List<Address>();    
 }

@@ -33,7 +33,7 @@ public class CustomerController : ControllerBase
     [HttpPost]
     [Route("complex")]
     public Customer Save(ComplexCustomer customer){
-        _logger.LogInformation("The customer information is " + customer.ToString());
+        _logger.LogInformation("The customer information is " + customer.GetPhones());
         _customerService.Save(customer) ;
         return customer;
     }
